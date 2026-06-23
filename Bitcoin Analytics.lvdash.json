@@ -77,6 +77,54 @@
           }
         ]
       }
+    },
+    {
+      "name": "d2f1503c",
+      "displayName": "tb_observability_bitcoin",
+      "config": {
+        "version": "1.1",
+        "source": "adb_bitcoin.gold.tb_observability_bitcoin",
+        "dimensions": [
+          {
+            "name": "notebook_name",
+            "expr": "source.notebook_name",
+            "displayName": "Notebook Name"
+          },
+          {
+            "name": "status",
+            "expr": "source.status",
+            "displayName": "Status"
+          },
+          {
+            "name": "message",
+            "expr": "source.message",
+            "displayName": "Message"
+          },
+          {
+            "name": "execution_date",
+            "expr": "source.execution_date",
+            "displayName": "Execution Date"
+          },
+          {
+            "name": "logged_at",
+            "expr": "source.logged_at",
+            "displayName": "Logged At"
+          },
+          {
+            "name": "env",
+            "expr": "source.env",
+            "displayName": "Env"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          }
+        ]
+      }
     }
   ],
   "pages": [
@@ -368,6 +416,90 @@
             "y": 2,
             "width": 12,
             "height": 8
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "ff4c3844",
+      "displayName": "observability",
+      "layout": [
+        {
+          "widget": {
+            "name": "2a109ebc",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "d2f1503c",
+                  "fields": [
+                    {
+                      "name": "status",
+                      "expression": "`status`"
+                    },
+                    {
+                      "name": "count(*)",
+                      "expression": "COUNT(`*`)"
+                    },
+                    {
+                      "name": "notebook_name",
+                      "expression": "`notebook_name`"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "count(*)",
+                  "displayName": "Total de execuções",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "notebook_name",
+                  "displayName": "Notebook",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "color": {
+                  "fieldName": "status",
+                  "scale": {
+                    "type": "categorical",
+                    "mappings": [
+                      {
+                        "value": "ERROR",
+                        "color": "#D80A0A"
+                      },
+                      {
+                        "value": "SUCCESS",
+                        "color": {
+                          "themeColorType": "visualizationColors",
+                          "position": 2
+                        }
+                      }
+                    ]
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 6,
+            "height": 6
           }
         }
       ],
