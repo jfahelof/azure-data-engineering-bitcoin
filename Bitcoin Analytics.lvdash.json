@@ -297,11 +297,11 @@
                       "expression": "DATE_TRUNC(\"DAY\", `data`)"
                     },
                     {
-                      "name": "sum(preco_usd)",
-                      "expression": "SUM(`preco_usd`)"
+                      "name": "preco_usd",
+                      "expression": "`preco_usd`"
                     }
                   ],
-                  "disaggregated": false
+                  "disaggregated": true
                 }
               }
             ],
@@ -348,7 +348,7 @@
                   }
                 },
                 "y": {
-                  "fieldName": "sum(preco_usd)",
+                  "fieldName": "preco_usd",
                   "displayName": "Preço (USD)",
                   "scale": {
                     "type": "quantitative"
@@ -427,7 +427,7 @@
             "light": "#404040",
             "dark": "#E4D9CC"
           },
-          "fontSize": 13,
+          "fontSize": 18,
           "fontWeight": 600
         },
         "widgetTitle": {
