@@ -1,0 +1,470 @@
+{
+  "datasets": [
+    {
+      "name": "8101f3b7",
+      "displayName": "tb_bitcoin",
+      "config": {
+        "version": "1.1",
+        "source": "adb_bitcoin.gold.tb_bitcoin",
+        "dimensions": [
+          {
+            "name": "data",
+            "expr": "source.data",
+            "displayName": "Data"
+          },
+          {
+            "name": "ativo",
+            "expr": "source.ativo",
+            "displayName": "Ativo"
+          },
+          {
+            "name": "moeda",
+            "expr": "source.moeda",
+            "displayName": "Moeda"
+          },
+          {
+            "name": "preco_usd",
+            "expr": "source.preco_usd",
+            "displayName": "Preco Usd"
+          },
+          {
+            "name": "market_cap_usd",
+            "expr": "source.market_cap_usd",
+            "displayName": "Market Cap Usd"
+          },
+          {
+            "name": "volume_usd",
+            "expr": "source.volume_usd",
+            "displayName": "Volume Usd"
+          },
+          {
+            "name": "variacao_diaria_pct",
+            "expr": "source.variacao_diaria_pct",
+            "displayName": "Variacao Diaria Pct"
+          },
+          {
+            "name": "media_movel_7d",
+            "expr": "source.media_movel_7d",
+            "displayName": "Media Movel 7 D"
+          },
+          {
+            "name": "media_movel_30d",
+            "expr": "source.media_movel_30d",
+            "displayName": "Media Movel 30 D"
+          },
+          {
+            "name": "media_movel_90d",
+            "expr": "source.media_movel_90d",
+            "displayName": "Media Movel 90 D"
+          },
+          {
+            "name": "data_carga_lake",
+            "expr": "source.data_carga_lake",
+            "displayName": "Data Carga Lake"
+          },
+          {
+            "name": "fonte",
+            "expr": "source.fonte",
+            "displayName": "Fonte"
+          }
+        ],
+        "measures": [
+          {
+            "name": "count",
+            "expr": "COUNT(*)",
+            "comment": "Represents the total number of rows in the dataset. Use this measure to count all",
+            "displayName": "Count"
+          }
+        ]
+      }
+    }
+  ],
+  "pages": [
+    {
+      "name": "b4dadaf5",
+      "displayName": "dash",
+      "layout": [
+        {
+          "widget": {
+            "name": "p",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "8101f3b7",
+                  "fields": [
+                    {
+                      "name": "last(preco_usd)",
+                      "expression": "LAST(`preco_usd`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "Preço atual USD",
+                "showDescription": false
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "last(preco_usd)"
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 3,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "media",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "8101f3b7",
+                  "fields": [
+                    {
+                      "name": "last(preco_usd)",
+                      "expression": "LAST(`preco_usd`)"
+                    },
+                    {
+                      "name": "last(media_movel_7d)",
+                      "expression": "LAST(`media_movel_7d`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "Média últimos 7 dias"
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "last(media_movel_7d)"
+                },
+                "target": {
+                  "fieldName": "last(preco_usd)",
+                  "change": {
+                    "type": "percent"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 3,
+            "y": 0,
+            "width": 3,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "bbdf2784",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "8101f3b7",
+                  "fields": [
+                    {
+                      "name": "last(preco_usd)",
+                      "expression": "LAST(`preco_usd`)"
+                    },
+                    {
+                      "name": "last(media_movel_30d)",
+                      "expression": "LAST(`media_movel_30d`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "Média últimos 30 dias"
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "last(media_movel_30d)"
+                },
+                "target": {
+                  "fieldName": "last(preco_usd)",
+                  "change": {
+                    "type": "percent"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 6,
+            "y": 0,
+            "width": 3,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "c647fa96",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "8101f3b7",
+                  "fields": [
+                    {
+                      "name": "last(preco_usd)",
+                      "expression": "LAST(`preco_usd`)"
+                    },
+                    {
+                      "name": "last(media_movel_90d)",
+                      "expression": "LAST(`media_movel_90d`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "showTitle": true,
+                "title": "Média últimos 30 dias"
+              },
+              "widgetType": "counter",
+              "encodings": {
+                "value": {
+                  "fieldName": "last(media_movel_90d)"
+                },
+                "target": {
+                  "fieldName": "last(preco_usd)",
+                  "change": {
+                    "type": "percent"
+                  }
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 9,
+            "y": 0,
+            "width": 3,
+            "height": 2
+          }
+        },
+        {
+          "widget": {
+            "name": "e601e111",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "8101f3b7",
+                  "fields": [
+                    {
+                      "name": "daily(data)",
+                      "expression": "DATE_TRUNC(\"DAY\", `data`)"
+                    },
+                    {
+                      "name": "sum(preco_usd)",
+                      "expression": "SUM(`preco_usd`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "mark": {
+                "colors": [
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 2
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 2
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 3
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 4
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 5
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 6
+                  },
+                  {
+                    "themeColorType": "visualizationColors",
+                    "position": 7
+                  }
+                ]
+              },
+              "widgetType": "area",
+              "encodings": {
+                "x": {
+                  "fieldName": "daily(data)",
+                  "scale": {
+                    "type": "temporal"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(preco_usd)",
+                  "displayName": "Preço (USD)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "label": {
+                  "show": false
+                }
+              },
+              "data": {
+                "queryName": "main_query"
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 2,
+            "width": 12,
+            "height": 8
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "canvasBackgroundColor": {
+        "light": "#F0F0F0",
+        "dark": "#121317"
+      },
+      "widgetBackgroundColor": {
+        "light": "#F0F0F0",
+        "dark": "#121317"
+      },
+      "widgetBorderColor": {
+        "light": "#171717",
+        "dark": "#9D9DA0"
+      },
+      "fontColor": {
+        "light": "#404040",
+        "dark": "#E4D9CC"
+      },
+      "selectionColor": {
+        "light": "#0061FE",
+        "dark": "#5A9FFF"
+      },
+      "visualizationColors": [
+        "#377EB8",
+        "#4DAF4A",
+        "#984EA3",
+        "#FF7F00",
+        "#FFFF33",
+        "#A65628",
+        "#F781BF"
+      ],
+      "widgetHeaderAlignment": "LEFT",
+      "fontFamily": "Roboto Mono",
+      "widgetPadding": 16,
+      "widgetMargin": 0,
+      "widgetCornerRadius": 0,
+      "widgetShadow": 0,
+      "continuousGradient": {
+        "lightMode": {
+          "fromCategoricalIndex": 0
+        },
+        "darkMode": {
+          "fromCategoricalIndex": 0
+        }
+      },
+      "fontSettings": {
+        "base": {
+          "fontFamily": "Roboto Mono",
+          "fontColor": {
+            "light": "#404040",
+            "dark": "#E4D9CC"
+          },
+          "fontSize": 13,
+          "fontWeight": 600
+        },
+        "widgetTitle": {
+          "fontSize": 15,
+          "fontWeight": 500
+        },
+        "widgetDescription": {
+          "fontSize": 13,
+          "fontWeight": 400
+        },
+        "fieldTitle": {
+          "textCase": "TEXT_CASE_UPPERCASE",
+          "fontColor": {
+            "light": "#535353",
+            "dark": "#DEDDDA"
+          },
+          "fontSize": 12,
+          "fontWeight": 400
+        },
+        "fieldValue": {
+          "fontColor": {
+            "light": "#535353",
+            "dark": "#DEDDDA"
+          },
+          "fontSize": 12,
+          "fontWeight": 400
+        }
+      },
+      "gridLineColor": {
+        "light": "#D1D1D1",
+        "dark": "#3B3B3E"
+      },
+      "axisLineColor": {
+        "light": "#C1C1C1",
+        "dark": "#4F5052"
+      }
+    },
+    "applyModeEnabled": false
+  }
+}
